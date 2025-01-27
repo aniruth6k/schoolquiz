@@ -11,7 +11,7 @@ from urllib.parse import unquote
 from threading import Thread
 import re
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 load_dotenv()
 
@@ -233,8 +233,8 @@ def clear_cache():
     used_questions.clear()
     return jsonify({"status": "Cache cleared"}), 200
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     print("\nStarting Quiz Generator Server...")
     print("=" * 50)
     CORS(app, resources={r"/": {"origins": ""}})
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=True)
